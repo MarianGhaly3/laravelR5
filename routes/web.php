@@ -3,6 +3,27 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Mycontroller;
 
+// day 3  ///////////////////////////////////
+
+use App\Http\Controllers\ClientController;
+
+Route::get('clientform', [ClientController::class, 'create']);
+
+Route::post('insertClient', [ClientController::class, 'store'])
+    ->name('insertClient');
+
+// day 3 task (student) //////////////////////////
+
+use App\Http\Controllers\Studentcontroller;
+
+Route::get('studentform', [Studentcontroller::class, 'create']);
+
+Route::post('insertStudent', [Studentcontroller::class, 'store'])
+    ->name('insertStudent');
+
+////////////////// end of day 3 task //////////////
+
+
 Route::get('test10', [Mycontroller::class, 'my_data']);
 
 // Task 2 code ........
@@ -10,8 +31,8 @@ Route::get('test10', [Mycontroller::class, 'my_data']);
 Route::get('form1', function(){
     return view('form1');
 });
-Route::post('recForm1', [Mycontroller::class, 'store']);
-
+// Route::post('recForm1', [Mycontroller::class, 'store']);
+Route::post('formdata', [Mycontroller::class, 'receiveData']);
 // end of task 2 .......
 
 Route::get('/', function () {

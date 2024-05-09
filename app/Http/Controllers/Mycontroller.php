@@ -12,18 +12,18 @@ class Mycontroller extends Controller
     }
 
     // Task 2 code ........
-
-    public function store(Request $request)
-    {   
-        $user = new User;
-        $user->fname = $request['fname'];
-        $user->lname = $request['lname'];
-       
-    return 'Data Recieved Successfully <br> 
-    First Name : '. $user->{'fname'} . ' <br> Last Name : ' . $user->{'lname'};
-
-    }
+    // public function store(Request $request){   
+    //     $user = new User;
+    //     $user->fname = $request['fname'];
+    //     $user->lname = $request['lname'];
+    // return 'Data Recieved Successfully <br> 
+    // First Name : '. $user->{'fname'} . ' <br> Last Name : ' . $user->{'lname'};
+    // }
     
+    public function receiveData(Request $request){
+        $fname = $request->fname;
+        $lname = $request->lname;
+        return view('formdata', compact('fname', 'lname'));
+    }
     // end of task 2 .......
-
 }
