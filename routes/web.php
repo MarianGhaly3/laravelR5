@@ -3,25 +3,25 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Mycontroller;
 
-// day 3  ///////////////////////////////////
+///// day 3 (clients) + day 4  ///////////////////////////////////
 
 use App\Http\Controllers\ClientController;
 
-Route::get('clientform', [ClientController::class, 'create']);
+Route::get('addClient', [ClientController::class, 'create'])->name('addClient');
+Route::get('clients', [ClientController::class, 'index'])->name('clients');
 
-Route::post('insertClient', [ClientController::class, 'store'])
-    ->name('insertClient');
+Route::post('ClientInserted', [ClientController::class, 'store'])->name('ClientInserted');
 
-// day 3 task (student) //////////////////////////
+///// day 3 task (student)  + day 4 task //////////////////////////
 
 use App\Http\Controllers\Studentcontroller;
 
-Route::get('studentform', [Studentcontroller::class, 'create']);
+Route::get('addStudent', [Studentcontroller::class, 'create'])->name('addStudent');
+Route::get('students', [Studentcontroller::class, 'index'])->name('students');
 
-Route::post('insertStudent', [Studentcontroller::class, 'store'])
-    ->name('insertStudent');
+Route::post('StudentInserted', [Studentcontroller::class, 'store'])->name('StudentInserted');
 
-////////////////// end of day 3 task //////////////
+//////////////////  end of day 3 + day 4 task  ///////////////////
 
 
 Route::get('test10', [Mycontroller::class, 'my_data']);
