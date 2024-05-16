@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>day4-addClient</title>
+  <title>add Client</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -14,19 +14,33 @@
 @include('includes.nav')
 <!-- end of nav bar -->
 
-<div class="container" style="margin:20px" >
+<div class="container" style="margin:auto; width:50%" >
   <h2>Add Client Form</h2><br>
+
   <form action="{{ route('ClientInserted') }}" method="POST">
      @csrf
+
+    <div class="form-group">
     <label for="clientname">Client name:</label><br>
-    <input type="text" id="cname" name="clientName" value="John"><br><br>
+    <input class="form-control" type="text" id="cname" name="clientName" value=" "><br>
+    </div>
+
+    <div class="form-group">
     <label for="phone">Phone :</label><br>
-    <input type="phone" id="phone" name="phone" value="012654233"><br><br>
+    <input class="form-control" type="phone" id="phone" name="phone" value=" "><br>
+    </div>
+
+    <div class="form-group">
     <label for="email">Email :</label><br>
-    <input type="email" id="email" name="email" value="test@test.com"><br><br>
+    <input class="form-control" type="email" id="email" name="email" value=" "><br>
+    </div>
+
+    <div class="form-group">
     <label for="website">website :</label><br>
-    <input type="text" id="website" name="website" value="www.test.com"><br><br><br>
-    <input type="submit" value="Submit" name="register">
+    <input class="form-control" type="text" id="website" name="website" value=" "><br><br>
+    </div>
+
+    <input type="submit" value="Submit" name="register" class="btn btn-default">
   </form>
 </div>
 

@@ -10,7 +10,14 @@ use App\Http\Controllers\ClientController;
 Route::get('addClient', [ClientController::class, 'create'])->name('addClient');
 Route::get('clients', [ClientController::class, 'index'])->name('clients');
 
+// day 5
+Route::get('editClient/{id}', [ClientController::class, 'edit'])->name('editClient');
+Route::put('updateClient/{id}', [ClientController::class, 'update'])->name('updateClient');
+Route::get('showClient/{id}', [ClientController::class, 'show'])->name('showClient');
+Route::delete('deleteClient', [ClientController::class, 'destroy'])->name('deleteClient');
+
 Route::post('ClientInserted', [ClientController::class, 'store'])->name('ClientInserted');
+
 
 ///// day 3 task (student)  + day 4 task //////////////////////////
 
@@ -19,10 +26,15 @@ use App\Http\Controllers\Studentcontroller;
 Route::get('addStudent', [Studentcontroller::class, 'create'])->name('addStudent');
 Route::get('students', [Studentcontroller::class, 'index'])->name('students');
 
+// day 5 task
+Route::get('editStudent/{id}', [Studentcontroller::class, 'edit'])->name('editStudent');
+Route::put('updateStudent/{id}', [Studentcontroller::class, 'update'])->name('updateStudent');
+Route::get('showStudent/{id}', [Studentcontroller::class, 'show'])->name('showStudent');
+Route::delete('deleteStudent', [Studentcontroller::class, 'destroy'])->name('deleteStudent');
+
 Route::post('StudentInserted', [Studentcontroller::class, 'store'])->name('StudentInserted');
 
 //////////////////  end of day 3 + day 4 task  ///////////////////
-
 
 Route::get('test10', [Mycontroller::class, 'my_data']);
 

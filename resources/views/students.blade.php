@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Day 11 Task</title>
+  <title>students data</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -22,6 +22,9 @@
       <tr>
         <th>student Name </th>
         <th>age </th>
+        <th>Edit </th>
+        <th>Show </th>
+        <th>delete </th>
       </tr>
     </thead>
 
@@ -30,6 +33,16 @@
             <tr>
               <th>{{ $student->studentName }}</th>
               <td>{{ $student->age }}</td>
+              <td><a href="{{ route('editStudent', $student->id) }}" >Edit</a></td>
+              <td><a href="{{ route('showStudent', $student->id) }}" >Show</a></td>
+              <td>
+                <form action="{{ route('deleteStudent') }}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                  <input type="hidden" value="{{$student->id}}" name="id">
+                  <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete record ?')">
+                </form>
+              </td>
             </tr>
         @endforeach
     </tbody>
