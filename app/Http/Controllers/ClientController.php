@@ -43,7 +43,14 @@ class ClientController extends Controller
         // $client->email = $request->email;
         // $client->website = $request->website;
         // $client->save();
-        Client::create($request->only($this-> columns ));
+        $data = $request->validate([
+            'clientName' => 'required|max:100|min:5',
+            'phone' => 'required|min:11',
+            'email' => 'required|email:rfc',
+            'website' => 'required|url',
+        ]);
+        Client::create($data);
+        //Client::create($request->only($this-> columns ));
         return redirect ('clients');
     }
 
@@ -82,5 +89,33 @@ class ClientController extends Controller
         $id = $request->id;
         Client::where('id', $id)->delete();
         return redirect('clients');
+    }
+
+    /**
+     * show trashed records.
+     */
+    public function trash()
+    {
+        $trashed = Client::onlyTrashed()->get();
+        return view('trashClient', compact('trashed'));
+    }
+
+    /**
+     * Restore trashed record.
+     */
+    public function restore(string $id)
+    {
+        Client::where('id', $id)->restore();
+        return redirect('clients');
+    }
+
+    /**
+     * permenant delete.
+     */
+    public function forceDelete(Request $request)
+    {
+        $id = $request->id;
+        Client::where('id', $id)->forceDelete();
+        return redirect('trashClient');
     }
 }

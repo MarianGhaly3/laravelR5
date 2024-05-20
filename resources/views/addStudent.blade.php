@@ -23,9 +23,21 @@
 
     @csrf
   <label for="studentname">Student Name:</label><br>
+  <p style="color:red">
+    @error('studentName')
+      {{$message}}
+    @enderror
+    </p>
   <input type="text" id="name" name="studentName" value=" "><br><br>
-  <label for="phone">Age :</label><br>
-  <input type="phone" id="age" name="age" value=" "><br><br>
+
+  <label for="age">Age :</label><br>
+  <p style="color:red">
+   @error('age')
+      {{$message}}
+    @enderror
+    </p>
+  <input type="text" id="age" name="age" value=" "><br><br>
+  
   <br>
   <input type="submit" value="Submit" name="register">
 </form> 

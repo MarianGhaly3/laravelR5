@@ -22,21 +22,45 @@
 
     <div class="form-group">
     <label for="clientname">Client name:</label><br>
+    <p style="color:red">
+    @error('clientName')
+      {{$message}}
+    @enderror
+    </p>
+
     <input class="form-control" type="text" id="cname" name="clientName" value=" "><br>
     </div>
 
     <div class="form-group">
     <label for="phone">Phone :</label><br>
+    <p style="color:red">
+    @error('phone')
+      {{$message}}
+    @enderror
+    </p>
+
     <input class="form-control" type="phone" id="phone" name="phone" value=" "><br>
     </div>
 
     <div class="form-group">
     <label for="email">Email :</label><br>
+    <p style="color:red">
+    @error('email')
+      {{$message}}
+    @enderror
+    </p>
+
     <input class="form-control" type="email" id="email" name="email" value=" "><br>
     </div>
 
     <div class="form-group">
     <label for="website">website :</label><br>
+    <p style="color:red">
+    @error('website')
+      {{$message}}
+    @enderror
+    </p>
+    
     <input class="form-control" type="text" id="website" name="website" value=" "><br><br>
     </div>
 

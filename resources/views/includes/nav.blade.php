@@ -6,7 +6,7 @@
     <ul class="nav navbar-nav">
       <li><a href="{{ route('addClient') }}">Add</a></li>
       <li><a href="{{ route('clients') }}">Clients</a></li>
-      <li><a href="#">Page 2</a></li>
+      <li><a href="{{ route('trashClient') }}">Trash</a></li>
     </ul>
   </div>
 </nav>

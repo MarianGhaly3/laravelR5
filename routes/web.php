@@ -16,6 +16,12 @@ Route::put('updateClient/{id}', [ClientController::class, 'update'])->name('upda
 Route::get('showClient/{id}', [ClientController::class, 'show'])->name('showClient');
 Route::delete('deleteClient', [ClientController::class, 'destroy'])->name('deleteClient');
 
+// day 6 
+Route::get('trashClient', [ClientController::class, 'trash'])->name('trashClient');
+Route::get('restoreClient/{id}', [ClientController::class, 'restore'])->name('restoreClient');
+Route::delete('forceDeleteClient', [ClientController::class, 'forceDelete'])->name('forceDeleteClient');
+
+
 Route::post('ClientInserted', [ClientController::class, 'store'])->name('ClientInserted');
 
 
@@ -31,6 +37,11 @@ Route::get('editStudent/{id}', [Studentcontroller::class, 'edit'])->name('editSt
 Route::put('updateStudent/{id}', [Studentcontroller::class, 'update'])->name('updateStudent');
 Route::get('showStudent/{id}', [Studentcontroller::class, 'show'])->name('showStudent');
 Route::delete('deleteStudent', [Studentcontroller::class, 'destroy'])->name('deleteStudent');
+
+// day 6 task
+Route::get('trashStudent', [Studentcontroller::class, 'trash'])->name('trashStudent');
+Route::get('restoreStudent/{id}', [Studentcontroller::class, 'restore'])->name('restoreStudent');
+Route::delete('forceDeleteStudent', [Studentcontroller::class, 'forceDelete'])->name('forceDeleteStudent');
 
 Route::post('StudentInserted', [Studentcontroller::class, 'store'])->name('StudentInserted');
 
