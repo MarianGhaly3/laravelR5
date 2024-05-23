@@ -31,6 +31,7 @@ use App\Http\Controllers\Studentcontroller;
 
 Route::get('addStudent', [Studentcontroller::class, 'create'])->name('addStudent');
 Route::get('students', [Studentcontroller::class, 'index'])->name('students');
+Route::post('StudentInserted', [Studentcontroller::class, 'store'])->name('StudentInserted');
 
 // day 5 task
 Route::get('editStudent/{id}', [Studentcontroller::class, 'edit'])->name('editStudent');
@@ -43,9 +44,7 @@ Route::get('trashStudent', [Studentcontroller::class, 'trash'])->name('trashStud
 Route::get('restoreStudent/{id}', [Studentcontroller::class, 'restore'])->name('restoreStudent');
 Route::delete('forceDeleteStudent', [Studentcontroller::class, 'forceDelete'])->name('forceDeleteStudent');
 
-Route::post('StudentInserted', [Studentcontroller::class, 'store'])->name('StudentInserted');
 
-//////////////////  end of day 3 + day 4 task  ///////////////////
 
 Route::get('test10', [Mycontroller::class, 'my_data']);
 

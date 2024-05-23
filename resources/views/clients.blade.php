@@ -24,6 +24,7 @@
         <th>Phone </th>
         <th>Email </th>
         <th>Website </th>
+        <th>City </th>
         <th>Edit </th>
         <th>Show </th>
         <th>delete </th>
@@ -36,6 +37,7 @@
               <td>{{ $client->phone }}</td>
               <td>{{ $client->email }}</td>
               <td>{{ $client->website }}</td>
+              <td>{{ $client->city }}</td>
               <td><a href="{{ route('editClient', $client->id) }}" >Edit</a></td>
               <td><a href="{{ route('showClient', $client->id) }}" >Show</a></td>
               <!-- <td><a href="{{ route('deleteClient', $client->id) }}" >Delete</a></td>-->

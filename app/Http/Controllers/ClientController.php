@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Client;
 
+// new task 7
+
 
 
 class ClientController extends Controller
@@ -14,6 +16,9 @@ class ClientController extends Controller
         'phone',
         'email',
         'website',
+        'city',
+        'image',
+        'active',
     ];
     /**
      * Display a listing of the resource.
@@ -32,52 +37,73 @@ class ClientController extends Controller
         return view('addClient');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    //Store a newly created resource in storage.
     public function store(Request $request)
-    {
-        // $client = new Client();
-        // $client->clientName = $request->clientName;
-        // $client->phone = $request->phone;
-        // $client->email = $request->email;
-        // $client->website = $request->website;
-        // $client->save();
+    { 
+        $messages = $this ->errMsgs();
         $data = $request->validate([
             'clientName' => 'required|max:100|min:5',
             'phone' => 'required|min:11',
             'email' => 'required|email:rfc',
-            'website' => 'required|url',
-        ]);
+            'website' => 'required',
+            'city' => 'required',
+            'image' => 'required|file:image',
+        ], $messages);
+
+        $imgExt = $request->image->getClientOriginalExtension();
+        $fileName = time().'.'.$imgExt;
+        $path = 'assets/images';
+        $request->image->move($path, $fileName);
+        $data['image'] = $fileName;
+        $data['active'] = isset($request->active);
+
         Client::create($data);
-        //Client::create($request->only($this-> columns ));
         return redirect ('clients');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    //Display the specified resource.
     public function show(string $id)
     {
         $client = Client::findOrFail($id);
         return view('showClient', compact('client'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    //Show the form for editing the specified resource.
     public function edit(string $id)
     {
         $client = Client::findOrFail($id);
         return view('editClient', compact('client'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    //Update the specified resource in storage.
     public function update(Request $request, string $id)
     {
-        Client::where('id', $id)->update($request->only($this-> columns ));
+        $id = $request->id;
+
+        $messages = $this ->errMsgs();
+        $data = $request->validate([
+            'clientName' => 'required|max:100|min:5',
+            'phone' => 'required|min:11',
+            'email' => 'required|email:rfc',
+            'website' => 'required',
+            'city' => 'required',
+            'image' => 'required|file:image',
+        ], $messages);
+        
+        if ($request->hasFile('image')) {
+            if (isset($client->image)) {
+                $request->image->delete();
+            }
+        $imgExt = $request->image->getClientOriginalExtension();
+        $fileName = time().'.'.$imgExt;
+        $path = 'assets/images';
+        $request->image->move($path, $fileName);
+        $data['image'] = $fileName;
+        }
+
+        Client::where('id', $id)->update($data);
+
+        //Client::where('id', $id)->update($request->only($this-> columns ));
         return redirect('clients');
     }
 
@@ -117,5 +143,14 @@ class ClientController extends Controller
         $id = $request->id;
         Client::where('id', $id)->forceDelete();
         return redirect('trashClient');
+    }
+
+    // error custom msgs
+    public function errMsgs()
+    {
+       return [
+            'clientName.required' => 'برجاء ادخال الاسم',
+            'phone.required' => ' برجاء ادخال رقم تليفون صحيح ' ,
+        ];
     }
 }
