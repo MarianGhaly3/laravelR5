@@ -45,7 +45,7 @@
     <div class="form-group">
     <label for="city">City :</label>
     <select class="form-control" type="text" id="city" name="city" >
-    <option value=" ">{{ $client->city }}</option>
+    <option value="{{ $client->city }}">{{ $client->city }}</option>
       <option value="Cairo" >Cairo</option>
       <option value="Giza" >Giza</option>
       <option value="Alex" >Alex</option>
@@ -54,12 +54,13 @@
 
     <div class="form-group">
     <label for="image">Image:</label>
-    <input type="file" id="image" name="image" class="form-control" value="{{ $client->image }}">
+    <p><img src="{{ asset('assets/images/'.$client->image) }}" width="150px" alt=""></p>
+    <input type="file" id="image" name="image" class="form-control" value=" ">
     </div>
 
     <div class="form-group">
     <label for="active">Active:</label>
-    <input type="checkbox" id="active" name="active" class="form-control" value="{{ $client->active }}" ><br>
+    <input type="checkbox" id="active" name="active" class="form-control" value="{{ $client->active ? 'checked' : '' }}" ><br>
     </div>
 
     <input class="form-control" type="submit" value="Update" name="register">

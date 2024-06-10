@@ -25,6 +25,8 @@
         <th>Email </th>
         <th>Website </th>
         <th>City </th>
+        <th>image </th>
+        <th>active </th>
         <th>Edit </th>
         <th>Show </th>
         <th>delete </th>
@@ -38,9 +40,10 @@
               <td>{{ $client->email }}</td>
               <td>{{ $client->website }}</td>
               <td>{{ $client->city }}</td>
+              <td><p><img src="{{ asset('assets/images/' . $client->image) }}" width="70px" alt=""></p></td>
+              <!-- <td><p><input type="checkbox" id="active" name="active" class="form-control" value="{{ $client->active ? 'checked' : '' }}"></p></td> -->
               <td><a href="{{ route('editClient', $client->id) }}" >Edit</a></td>
               <td><a href="{{ route('showClient', $client->id) }}" >Show</a></td>
-              <!-- <td><a href="{{ route('deleteClient', $client->id) }}" >Delete</a></td>-->
               <td>
                 <form action="{{ route('deleteClient') }}" method="POST">
                   @csrf

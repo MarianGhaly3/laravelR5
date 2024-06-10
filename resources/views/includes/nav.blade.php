@@ -1,3 +1,4 @@
+<!-- Start Nav bar -->
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -7,6 +8,11 @@
       <li><a href="{{ route('addClient') }}">Add</a></li>
       <li><a href="{{ route('clients') }}">Clients</a></li>
       <li><a href="{{ route('trashClient') }}">Trash</a></li>
+       
+      @yield('menu')
+      @stack('submenu')
+      
     </ul>
   </div>
 </nav>
+<!-- End Nav bar -->

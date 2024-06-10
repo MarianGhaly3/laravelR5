@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
-
-// new task 7
-
-
+use App\Traits\UploadFile;
 
 class ClientController extends Controller
 {
+    use UploadFile;
     private $columns = [
         'clientName',
         'phone',
@@ -29,9 +27,7 @@ class ClientController extends Controller
         return view('clients', compact('clients'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    //Show the form for creating a new resource.
     public function create()
     {
         return view('addClient');
@@ -47,14 +43,13 @@ class ClientController extends Controller
             'email' => 'required|email:rfc',
             'website' => 'required',
             'city' => 'required',
-            'image' => 'required|file:image',
+            'image' => 'required|image',
         ], $messages);
+        
+        $fileName = $this->upload($request->image, 'assets/images');
 
-        $imgExt = $request->image->getClientOriginalExtension();
-        $fileName = time().'.'.$imgExt;
-        $path = 'assets/images';
-        $request->image->move($path, $fileName);
         $data['image'] = $fileName;
+
         $data['active'] = isset($request->active);
 
         Client::create($data);
@@ -87,22 +82,21 @@ class ClientController extends Controller
             'email' => 'required|email:rfc',
             'website' => 'required',
             'city' => 'required',
-            'image' => 'required|file:image',
+            'image' => 'sometimes|file:image', //nullable
         ], $messages);
         
         if ($request->hasFile('image')) {
-            if (isset($client->image)) {
-                $request->image->delete();
-            }
-        $imgExt = $request->image->getClientOriginalExtension();
-        $fileName = time().'.'.$imgExt;
-        $path = 'assets/images';
-        $request->image->move($path, $fileName);
-        $data['image'] = $fileName;
+            // storage - unlink
+            // $imgExt = $request->image->getClientOriginalExtension();
+            // $fileName = time().'.'.$imgExt;
+            // $path = 'assets/images';
+            // $request->image->move($path, $fileName);
+            $fileName = $this->upload($request->image, 'assets/images');
+            $data['image'] = $fileName;
         }
+        $data['active'] = isset($request->active);
 
         Client::where('id', $id)->update($data);
-
         //Client::where('id', $id)->update($request->only($this-> columns ));
         return redirect('clients');
     }

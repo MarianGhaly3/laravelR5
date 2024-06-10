@@ -58,7 +58,7 @@ Route::post('formdata', [Mycontroller::class, 'receiveData']);
 // end of task 2 .......
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('stacked');
 });
 
 Route::get('Marian/{id?}', function($id = 0){
