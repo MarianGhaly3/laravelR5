@@ -3,24 +3,27 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Mycontroller;
 
+
+
+Auth::routes();
+
+Auth::routes(['verify'=>true]);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
+
+
 ///// day 3 (clients) + day 4  ///////////////////////////////////
 
 use App\Http\Controllers\ClientController;
 
+Route::get('clients', [ClientController::class, 'index'])->middleware('verified')->name('clients');
 Route::get('addClient', [ClientController::class, 'create'])->name('addClient');
-Route::get('clients', [ClientController::class, 'index'])->name('clients');
-
-// day 5
 Route::get('editClient/{id}', [ClientController::class, 'edit'])->name('editClient');
 Route::put('updateClient/{id}', [ClientController::class, 'update'])->name('updateClient');
 Route::get('showClient/{id}', [ClientController::class, 'show'])->name('showClient');
 Route::delete('deleteClient', [ClientController::class, 'destroy'])->name('deleteClient');
-
-// day 6 
 Route::get('trashClient', [ClientController::class, 'trash'])->name('trashClient');
 Route::get('restoreClient/{id}', [ClientController::class, 'restore'])->name('restoreClient');
 Route::delete('forceDeleteClient', [ClientController::class, 'forceDelete'])->name('forceDeleteClient');
-
 
 Route::post('ClientInserted', [ClientController::class, 'store'])->name('ClientInserted');
 
@@ -32,14 +35,10 @@ use App\Http\Controllers\Studentcontroller;
 Route::get('addStudent', [Studentcontroller::class, 'create'])->name('addStudent');
 Route::get('students', [Studentcontroller::class, 'index'])->name('students');
 Route::post('StudentInserted', [Studentcontroller::class, 'store'])->name('StudentInserted');
-
-// day 5 task
 Route::get('editStudent/{id}', [Studentcontroller::class, 'edit'])->name('editStudent');
 Route::put('updateStudent/{id}', [Studentcontroller::class, 'update'])->name('updateStudent');
 Route::get('showStudent/{id}', [Studentcontroller::class, 'show'])->name('showStudent');
 Route::delete('deleteStudent', [Studentcontroller::class, 'destroy'])->name('deleteStudent');
-
-// day 6 task
 Route::get('trashStudent', [Studentcontroller::class, 'trash'])->name('trashStudent');
 Route::get('restoreStudent/{id}', [Studentcontroller::class, 'restore'])->name('restoreStudent');
 Route::delete('forceDeleteStudent', [Studentcontroller::class, 'forceDelete'])->name('forceDeleteStudent');
@@ -58,7 +57,7 @@ Route::post('formdata', [Mycontroller::class, 'receiveData']);
 // end of task 2 .......
 
 Route::get('/', function () {
-    return view('stacked');
+    return view('welcome');
 });
 
 Route::get('Marian/{id?}', function($id = 0){
@@ -88,4 +87,3 @@ Route::prefix('cars')->group(function(){
 // Route::get('test', function(){
 //     return view('test');
 // });
-

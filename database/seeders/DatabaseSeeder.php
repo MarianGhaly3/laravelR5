@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\City;
 use App\Models\Client;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory(10)->create();
-        Client::factory(10)->create();
+        City::factory(20)->create();
+        Client::factory(20)->create();
     }
 }

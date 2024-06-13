@@ -24,7 +24,9 @@
         <th>Phone </th>
         <th>Email </th>
         <th>Website </th>
+        <th>city </th>
         <th>Image </th>
+
 
       </tr>
     </thead>
@@ -34,6 +36,7 @@
               <td>{{ $client->phone }}</td>
               <td>{{ $client->email }}</td>
               <td>{{ $client->website }}</td>
+              <td>{{ $client->city->city }}</td>
               <td><p><img src="{{ asset('assets/images/' . $client->image) }}" width="150px" alt=""></p></td>
             </tr>
     </tbody>

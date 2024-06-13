@@ -14,9 +14,10 @@ class ClientController extends Controller
         'phone',
         'email',
         'website',
-        'city',
+        'city_id',
         'image',
         'active',
+        'address',
     ];
     /**
      * Display a listing of the resource.
