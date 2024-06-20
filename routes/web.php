@@ -5,6 +5,7 @@ use App\Http\Controllers\Mycontroller;
 
 
 
+
 Auth::routes();
 
 Auth::routes(['verify'=>true]);
@@ -44,8 +45,6 @@ Route::get('restoreStudent/{id}', [Studentcontroller::class, 'restore'])->name('
 Route::delete('forceDeleteStudent', [Studentcontroller::class, 'forceDelete'])->name('forceDeleteStudent');
 
 Route::get('sessions', [Mycontroller::class, 'receiveData']);
-
-
 
 
 Route::get('test10', [Mycontroller::class, 'my_data']);

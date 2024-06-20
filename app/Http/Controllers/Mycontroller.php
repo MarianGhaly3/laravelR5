@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
+use App\Models\User;
 use App\Mail\ContactClient;
 use Illuminate\Support\Facades\Mail;
 
