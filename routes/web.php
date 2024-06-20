@@ -43,6 +43,9 @@ Route::get('trashStudent', [Studentcontroller::class, 'trash'])->name('trashStud
 Route::get('restoreStudent/{id}', [Studentcontroller::class, 'restore'])->name('restoreStudent');
 Route::delete('forceDeleteStudent', [Studentcontroller::class, 'forceDelete'])->name('forceDeleteStudent');
 
+Route::get('sessions', [Mycontroller::class, 'receiveData']);
+
+
 
 
 Route::get('test10', [Mycontroller::class, 'my_data']);
