@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            
+
+            $table->boolean('expired')->default(0);    // added field        
             $table->string('username')->unique(); // added field
 
             $table->timestamp('email_verified_at')->nullable();
